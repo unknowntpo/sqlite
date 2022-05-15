@@ -1,7 +1,7 @@
 describe 'database' do
     def run_script(commands)
         raw_output = nil
-        IO.popen("./db", "r+", do |pipe|
+        IO.popen("./db", "r+") do |pipe|
             commands.each do |command|
                 pipe.puts command
             end
@@ -16,12 +16,12 @@ describe 'database' do
 
     it 'inserts and retrieves a row' do
         result = run_script([
-            "insert 1 user1 person1@example.comm",
+            "insert 1 user1 person1@example.com",
             "select",
             ".exit",
         ])
         expect(result).to match_array([
-            "db > Executed",
+            "db > Executed.",
             "db > (1, user1, person1@example.com)",
             "Executed.",
             "db > ",
