@@ -1,16 +1,37 @@
-
 CC = gcc
 CFLAGS = -g -Wall
-TARGET = db
+# OBJS = $(wildcard ./src/*.o) 
+OBJS = db.o
+SRCS = $(wildcard ./src/*.c)
 
-all: $(TARGET)
+ifeq ("$(VERBOSE)", "1")
+	Q :=
+	VECHO = @true
+else
+	Q := @
+	VECHO = @printf
+endif
 
-$(TARGET): db.c db.h
-	$(CC) -o $@ $(CFLAGS)  $< 
+all: db
 
-test:
+db: $(OBJS)
+	$(VECHO) '  LD\t $^\n'
+	$(Q)$(CC) -o $@ $^
+
+test/it:
 	@bundle exec rspec
 
-.PHONY: test clean
+test/unit: db_test.o db.o
+	$(VECHO) '  LD\t $^\n'
+	$(Q)$(CC) -o $@ $^
+	@echo ''
+	@echo 'Running automated tests...'
+	@echo ''
+	@./$@
+
+$(OBJS): $(SRCS)
+	$(VECHO) '  CC\t $^\n'
+	$(Q)$(CC) -o $@ $(CFLAGS) -c $^
+
 clean:
-	-rm -rf $(TARGET)
+	@-rm test db $(OBJS)
