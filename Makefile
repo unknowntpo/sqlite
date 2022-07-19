@@ -8,6 +8,7 @@ BIN = ./bin/sqlite
 # wildcard should use *
 # https://makefiletutorial.com/#-wildcard-1
 SRCS = $(wildcard $(SRC)/*.c)
+TESTS = $(wildcard $(TEST)/*.c)
 # >>?
 OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
