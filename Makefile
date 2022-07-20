@@ -4,11 +4,16 @@ CFLAGS = -g -Wall
 # OBJS = db.o
 SRC = ./src
 OBJ = ./obj
+
+TESTBIN = ./bin/test
 BIN = ./bin/sqlite
 # wildcard should use *
 # https://makefiletutorial.com/#-wildcard-1
 SRCS = $(wildcard $(SRC)/*.c)
+
+TEST = ./test
 TESTS = $(wildcard $(TEST)/*.c)
+TESTOBJS = $(patsubst $(TEST)/%.c, $(OBJ)/%.o, $(TESTS))
 # >>?
 OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
@@ -30,17 +35,22 @@ $(BIN): $(OBJS)
 test/it:
 	@bundle exec rspec
 
-test/unit: db_test.o db.o
+.PHONY: test/unit
+test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS)
 	$(VECHO) '  LD\t $^\n'
-	$(Q)$(CC) -o $@ $^
+	$(Q)$(CC) -o $(TESTBIN) $^
 	@echo ''
 	@echo 'Running automated tests...'
 	@echo ''
-	@./$@
+	@$(TESTBIN)
+
+$(OBJ)/%.o: $(TEST)/%.c
+	$(VECHO) '  CC\t $^\n'
+	$(Q)$(CC) -o $@ $(CFLAGS) -c $^
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(VECHO) '  CC\t $^\n'
 	$(Q)$(CC) -o $@ $(CFLAGS) -c $^
 
 clean:
-	@-rm $(BIN) $(OBJS)
+	@-rm $(BIN) $(OBJS) $(TESTOBJS)
