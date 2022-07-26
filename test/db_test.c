@@ -1,6 +1,6 @@
 #include <string.h>
 #include "db.h"
-#include "src/minunit.h"
+#include "minunit.h"
 
 char *test_hello()
 {
@@ -14,3 +14,5 @@ char *all_tests()
 
     return TEST_PASS;
 }
+
+RUN_TESTS(all_tests);

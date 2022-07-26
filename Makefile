@@ -11,6 +11,9 @@ BIN = ./bin/sqlite
 # https://makefiletutorial.com/#-wildcard-1
 SRCS = $(wildcard $(SRC)/*.c)
 
+INC_DIR = ./include
+INC_FLAGS = $(addprefix -I,$(INC_DIR))
+
 TEST = ./test
 TESTS = $(wildcard $(TEST)/*.c)
 TESTOBJS = $(patsubst $(TEST)/%.c, $(OBJ)/%.o, $(TESTS))
@@ -46,11 +49,11 @@ test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS)
 
 $(OBJ)/%.o: $(TEST)/%.c
 	$(VECHO) '  CC\t $^\n'
-	$(Q)$(CC) -o $@ $(CFLAGS) -c $^
+	$(Q)$(CC) -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(VECHO) '  CC\t $^\n'
-	$(Q)$(CC) -o $@ $(CFLAGS) -c $^
+	$(Q)$(CC) -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
 
 clean:
 	@-rm $(BIN) $(OBJS) $(TESTOBJS)
