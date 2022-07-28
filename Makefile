@@ -1,5 +1,7 @@
 CC = gcc
+GXX = g++
 CFLAGS = -g -Wall
+CPPFLAGS = -g -std=c++11
 # OBJS = $(wildcard ./src/*.o) 
 # OBJS = db.o
 SRC = ./src
@@ -13,6 +15,8 @@ SRCS = $(wildcard $(SRC)/*.c)
 
 INC_DIR = ./include
 INC_FLAGS = $(addprefix -I,$(INC_DIR))
+
+LIB_DIR = ./lib
 
 TEST = ./test
 TESTS = $(wildcard $(TEST)/*.c)
@@ -39,17 +43,17 @@ test/it:
 	@bundle exec rspec
 
 .PHONY: test/unit
-test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS)
+test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS) $(LIB_DIR)/libgtest.a $(LIB_DIR)/libgtest_main.a
 	$(VECHO) '  LD\t $^\n'
-	$(Q)$(CC) -o $(TESTBIN) $^
+	$(Q)$(GXX) $(CPPFLAGS)  -o $(TESTBIN) $^
 	@echo ''
 	@echo 'Running automated tests...'
 	@echo ''
 	@$(TESTBIN)
 
-$(OBJ)/%.o: $(TEST)/%.c
+$(OBJ)/%.o: $(TEST)/%.cpp
 	$(VECHO) '  CC\t $^\n'
-	$(Q)$(CC) -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
+	$(Q)$(GXX) $(CPPFLAGS)  -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(VECHO) '  CC\t $^\n'

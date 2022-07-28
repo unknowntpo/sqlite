@@ -7,6 +7,11 @@ char *test_hello()
     return TEST_PASS;
 }
 
+char *test_input_buffer()
+{
+    return TEST_PASS;
+}
+
 char *all_tests() 
 {
     mu_suite_start();
