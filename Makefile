@@ -53,7 +53,7 @@ test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS) $(LIB_DIR)/libgtest.
 
 $(OBJ)/%.o: $(TEST)/%.cpp
 	$(VECHO) '  CC\t $^\n'
-	$(Q)$(GXX) $(CPPFLAGS)  -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
+	$(Q)$(GXX) $(CPPFLAGS)  -o $@ $(INC_FLAGS) -c $^
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(VECHO) '  CC\t $^\n'
