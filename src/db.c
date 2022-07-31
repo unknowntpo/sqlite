@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include "db.h"
 
 InputBuffer *new_input_buffer()
@@ -91,10 +92,10 @@ void print_prompt()
     printf("db > ");
 }
 
-void read_input(InputBuffer *input_buffer)
+void read_input(InputBuffer *input_buffer, FILE *f)
 {
     ssize_t bytes_read =
-        getline(&(input_buffer->buffer), &(input_buffer)->buffer_length, stdin);
+        getline(&(input_buffer->buffer), &(input_buffer)->buffer_length, f);
 
     if (bytes_read <= 0) {
         printf("Error reading input\n");

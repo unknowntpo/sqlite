@@ -83,7 +83,7 @@ ExecuteResult execute_select(Statement *statement, Table *table);
 ExecuteResult execute_statement(Statement *statement, Table *table);
 
 void print_prompt();
-void read_input(InputBuffer *input_buffer);
+void read_input(InputBuffer *input_buffer, FILE *f);
 void close_input_buffer(InputBuffer *input_buffer);
 
 #endif /*  __DB_H__ */
