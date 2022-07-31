@@ -18,8 +18,6 @@ TEST(testCase, test1) {
 }
 
 TEST(testInputBuffer, read_input) {
-    InputBuffer *b = new_input_buffer();  
-
     // char *project_source_dir = getenv("PROJECT_SOURCE_DIR");
     // char *test_file_dir = sprintf("%s/%s", project_source_dir, "test/testdata/input_buffer.txt")
     FILE *f = fopen("temp.txt", "w");
@@ -27,14 +25,8 @@ TEST(testInputBuffer, read_input) {
     freopen("temp.txt", "w", stdout);
     printf("hello");
     f = fopen("temp.txt", "r");
-    char *out  = fgets(f)
-    // FILE *f = fopen("../test/testdata/input_buffer.txt", "r");
-
-
-    // ASSERT_TRUE(f);
-    // read_input(b, f);
-    // fclose(f);
-    // for (int i = 0; i < b->buffer_length; b++ ) {
-    //     printf("b[%d] = %c\n",i, b->buffer[i]);
-    // }
+    
+    char out[10] = {0};
+    fgets(out, 10, f);
+    EXPECT_TRUE(strcmp(out, "hello1"));
 }
