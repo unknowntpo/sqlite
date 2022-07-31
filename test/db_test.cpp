@@ -3,11 +3,13 @@
 #include <unistd.h>
 
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
+
+
 
 extern "C"{
     #include "db.h"
 }
-
 
 int myadd(int a, int b) {
     return a + b;
@@ -28,5 +30,7 @@ TEST(testInputBuffer, read_input) {
     
     char out[10] = {0};
     fgets(out, 10, f);
-    EXPECT_TRUE(strcmp(out, "hello1"));
+    // EXPECT_TRUE(strcmp(out, "hello"));
+    // EXPECT_STREQ(out, "hello");
+    EXPECT_THAT(out, testing::HasSubstr("hello"));
 }
