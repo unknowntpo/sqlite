@@ -15,5 +15,12 @@ foreach(file ${tests})
         "${PROJECT_SOURCE_DIR}/test/main.cpp")
     target_link_libraries("${name}_tests" gtest_main)
     target_link_libraries("${name}_tests" gmock_main)
-    add_test(NAME ${name} COMMAND "${name}_tests")
+
+    # make test are working at ${PROJECT_SOURCE_DIR}/test,
+    # so we can access testdata
+    # https://stackoverflow.com/a/48230045
+    add_test(NAME ${name}
+        COMMAND
+        "${name}_tests"
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/test)
 endforeach()
