@@ -25,18 +25,34 @@ TEST(testString, test1) {
     // EXPECT_STREQ(str, "hello moto");
 }
 
-// TEST(testInputBuffer, read_input) {
-//     // char *project_source_dir = getenv("PROJECT_SOURCE_DIR");
-//     // char *test_file_dir = sprintf("%s/%s", project_source_dir, "test/testdata/input_buffer.txt")
-//     FILE *f = fopen("temp.txt", "w");
-//     fclose(f);
-//     freopen("temp.txt", "w", stdout);
-//     printf("hello");
-//     f = fopen("temp.txt", "r");
-    
-//     char out[10] = {0};
-//     fgets(out, 10, f);
-//     // EXPECT_TRUE(strcmp(out, "hello"));
-//     // EXPECT_STREQ(out, "hello");
-//     EXPECT_THAT(out, testing::HasSubstr("hello"));
+// TEST(prepareInsert, test1) {
+//     InputBuffer *b = new_input_buffer();
+//     Statement statement;
+//     PrepareResult res = prepare_insert(b, &statement)
+//     EXPECT_EQ(res,PREPARE_SUCCESS);
 // }
+
+TEST(testInputBuffer, read_input) {
+    // FILE *f = fopen("/Users/ds904297/repo/unknowntpo/sqlite/temp.txt", "r");
+    printf(">>>>>>>>PROJECT_SOURCE_DIR\n");
+
+    char cwd[300]; 
+  if (  getcwd(cwd,sizeof(cwd))) {
+  printf("current working dir: %s", cwd);
+  }
+    // printf("PROJECT_SOURCE_DIR", project_source_dir);
+
+    // char *project_source_dir = getenv("PROJECT_SOURCE_DIR");
+    // printf("PROJECT_SOURCE_DIR", project_source_dir);
+    // char *test_file_dir = (char*)malloc(100);
+    // sprintf(test_file_dir, "%s/%s", project_source_dir, "test/testdata/input_buffer.txt");
+    // printf("test file dir: %s", test_file_dir);
+    // FILE *f = fopen(test_file_dir, "r");
+    // long size = fsize(f);
+    // printf("size of file: %ld \n",size);
+    printf("hello from printf\n");
+    // int c ;
+    // // while((c = getc(f)) != EOF) {
+    // //     putchar(c);
+    // // }
+}
