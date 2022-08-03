@@ -105,16 +105,17 @@ void print_prompt()
 void read_input(InputBuffer *input_buffer, FILE *f)
 {
     ssize_t bytes_read =
-        getline(&(input_buffer->buffer), &(input_buffer)->buffer_length, f);
+        // Use getdelim to explicitly specify delimiter
+        getdelim(&(input_buffer->buffer), &(input_buffer)->buffer_length, '\0', f);
 
     if (bytes_read <= 0) {
         printf("Error reading input\n");
         exit(EXIT_FAILURE);
     }
 
-    // Ingnore trailing newline
-    input_buffer->input_length = bytes_read - 1;
-    input_buffer->buffer[bytes_read - 1] = 0;
+    // No need to ingnore trailing NULL byte because getdelim do this for us
+    input_buffer->input_length = bytes_read;
+    input_buffer->buffer[bytes_read] = 0;
 }
 
 void close_input_buffer(InputBuffer *input_buffer)

@@ -28,27 +28,12 @@ TEST(testString, test1)
     // EXPECT_STREQ(str, "hello moto");
 }
 
-// TEST(prepareInsert, test1) {
-//     InputBuffer *b = new_input_buffer();
-//     Statement statement;
-//     PrepareResult res = prepare_insert(b, &statement)
-//     EXPECT_EQ(res,PREPARE_SUCCESS);
-// }
-
 TEST(testInputBuffer, read_input)
 {
-    printf(">>>>>>>>PROJECT_SOURCE_DIR\n");
-
-    char cwd[300];
-    if (getcwd(cwd, sizeof(cwd))) {
-        printf("current working dir: %s\n", cwd);
-    }
-
     FILE *f = fopen("./testdata/input_buffer.txt", "r");
-    // printf("hello from printf\n");
-    int c;
-    while ((c = getc(f)) != EOF) {
-        putchar(c);
-    }
-    printf("\n");
+    InputBuffer *b = new_input_buffer();
+    read_input(b, f);
+    char *want = "insert 1 user1 person1@example.com";
+    EXPECT_EQ(b->input_length, strlen(want));
+    EXPECT_STREQ(b->buffer, want);
 }
