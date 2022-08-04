@@ -1,6 +1,6 @@
-#include <string.h>
-#include <stdio.h>
 #include "db.h"
+#include <stdio.h>
+#include <string.h>
 
 InputBuffer *new_input_buffer()
 {
@@ -106,16 +106,31 @@ void read_input(InputBuffer *input_buffer, FILE *f)
 {
     ssize_t bytes_read =
         // Use getdelim to explicitly specify delimiter
-        getdelim(&(input_buffer->buffer), &(input_buffer)->buffer_length, '\0', f);
+        getdelim(&(input_buffer->buffer), &(input_buffer)->buffer_length, '\n',
+                 f);
 
     if (bytes_read <= 0) {
         printf("Error reading input\n");
         exit(EXIT_FAILURE);
     }
 
-    // No need to ingnore trailing NULL byte because getdelim do this for us
-    input_buffer->input_length = bytes_read;
-    input_buffer->buffer[bytes_read] = 0;
+    ssize_t actual_bytes_read = 0;
+    if (input_buffer->buffer[bytes_read] == 0) {
+        // no \n
+        // e.g. [h e l l o \0]
+        // bytes_read = 5
+        // actual_bytes_read = 5
+        actual_bytes_read = bytes_read;
+    } else {
+        // has \n
+        // e.g. [h e l l o \n \0]
+        // bytes_read = 6 (getdelim won't ignore \n)
+        // actual_bytes_read = 5 - 1 = 4
+        actual_bytes_read = bytes_read - 1;
+    }
+
+    input_buffer->input_length = actual_bytes_read;
+    input_buffer->buffer[actual_bytes_read] = 0;
 }
 
 void close_input_buffer(InputBuffer *input_buffer)
