@@ -1,5 +1,5 @@
-#include "db.h"
 #include <stdio.h>
+#include "db.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             printf("String is too long.\n");
             continue;
         case (PREPARE_UNRECOGNIZED_STATEMENT):
-            printf("Unrecognized keyword at start of '%s'.\n",
+            printf("Unrecognized keyword at start of '%s'\n",
                    input_buffer->buffer);
             continue;
         }

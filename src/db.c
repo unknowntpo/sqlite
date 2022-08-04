@@ -12,6 +12,13 @@ InputBuffer *new_input_buffer()
     return input_buffer;
 }
 
+void show_buffer(InputBuffer *b)
+{
+    printf("InputBuffer->buffer: [%s]\n", b->buffer);
+    printf("InputBuffer->input_length: [%d]\n", b->input_length);
+    printf("InputBuffer->buffer_length: [%d]\n", b->buffer_length);
+}
+
 MetaCommandResult do_meta_command(InputBuffer *input_buffer, Table *table)
 {
     if (strcmp(input_buffer->buffer, ".exit") == 0) {
@@ -115,7 +122,7 @@ void read_input(InputBuffer *input_buffer, FILE *f)
     }
 
     ssize_t actual_bytes_read = 0;
-    if (input_buffer->buffer[bytes_read] == 0) {
+    if (input_buffer->buffer[bytes_read - 1] != '\n') {
         // no \n
         // e.g. [h e l l o \0]
         // bytes_read = 5
@@ -125,7 +132,7 @@ void read_input(InputBuffer *input_buffer, FILE *f)
         // has \n
         // e.g. [h e l l o \n \0]
         // bytes_read = 6 (getdelim won't ignore \n)
-        // actual_bytes_read = 5 - 1 = 4
+        // actual_bytes_read = 6 - 1 = 5
         actual_bytes_read = bytes_read - 1;
     }
 
