@@ -52,7 +52,8 @@ static const uint32_t USERNAME_OFFSET = ID_OFFSET + ID_SIZE;
 static const uint32_t EMAIL_OFFSET = USERNAME_OFFSET + USERNAME_SIZE;
 static const uint32_t ROW_SIZE = ID_SIZE + USERNAME_SIZE + EMAIL_SIZE;
 
-/* duplicate symbols in constant issues https://github.com/gzrjzcx/project_templete/issues/8 */
+/* duplicate symbols in constant issues
+ * https://github.com/gzrjzcx/project_templete/issues/8 */
 static const uint32_t PAGE_SIZE = 4096;
 #define TABLE_MAX_PAGES 100
 static const uint32_t ROWS_PER_PAGE = PAGE_SIZE / ROW_SIZE;
@@ -64,6 +65,7 @@ typedef struct {
 } Table;
 
 void print_row(Row *row);
+void print_row_byte(Row *row);
 void serialize_row(Row *source, void *destination);
 void deserialize_row(void *source, Row *destination);
 void *row_slot(Table *table, uint32_t row_num);

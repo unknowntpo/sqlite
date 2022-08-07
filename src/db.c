@@ -153,6 +153,18 @@ void print_row(Row *row)
     printf("(%d, %s, %s)\n", row->id, row->username, row->email);
 }
 
+void print_row_byte(Row *row)
+{
+    char *ptr = row;
+    for (int i = 0; i < sizeof(Row) + 1; i += 4) {
+        if (i > sizeof(Row))
+            return;
+        printf("Row[%d-%d]: |%c%c%c%c|\n", i, i + 3, ptr[i], ptr[i + 1],
+               ptr[i + 2], ptr[i + 3]);
+    }
+}
+
+
 void serialize_row(Row *source, void *destination)
 {
     memcpy(destination + ID_OFFSET, &(source->id), ID_SIZE);
