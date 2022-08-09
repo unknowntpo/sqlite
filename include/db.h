@@ -64,6 +64,9 @@ typedef struct {
     void *pages[TABLE_MAX_PAGES];
 } Table;
 
+
+
+Row *new_row();
 void print_row(Row *row);
 void print_row_byte(Row *row);
 void serialize_row(Row *source, void *destination);
@@ -71,6 +74,7 @@ void deserialize_row(void *source, Row *destination);
 void *row_slot(Table *table, uint32_t row_num);
 Table *new_table();
 void free_table(Table *table);
+void print_table(Table *table);
 
 InputBuffer *new_input_buffer();
 

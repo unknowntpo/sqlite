@@ -86,12 +86,11 @@ ExecuteResult execute_insert(Statement *statement, Table *table)
 
 ExecuteResult execute_select(Statement *statement, Table *table)
 {
-    Row row;
-    printf("row->id: [%d]\trow->username: [%s]\trow->email: [%s]\n", row.id,
-           row.username, row.email);
     for (uint32_t i = 0; i < table->num_rows; i++) {
-        deserialize_row(row_slot(table, i), &row);
-        print_row(&row);
+        Row *row = new_row();
+        deserialize_row(row_slot(table, i), row);
+        print_row(row);
+        free(row);
     }
     return EXECUTE_SUCCESS;
 }
@@ -148,9 +147,25 @@ void close_input_buffer(InputBuffer *input_buffer)
     free(input_buffer);
 }
 
+Row *new_row()
+{
+    Row *row = calloc(1, sizeof(Row));
+    return row;
+}
+
 void print_row(Row *row)
 {
     printf("(%d, %s, %s)\n", row->id, row->username, row->email);
+}
+
+void print_table(Table *table)
+{
+    char *ptr = table->pages;
+    for (int i = 0; i < table->num_rows; i++) {
+        Row *row = new_row();
+        deserialize_row(row_slot(table, i), row);
+        print_row(row);
+    }
 }
 
 void print_row_byte(Row *row)
@@ -189,7 +204,8 @@ void *row_slot(Table *table, uint32_t row_num)
         page = table->pages[page_num] = malloc(PAGE_SIZE);
     }
     uint32_t row_offset = row_num % ROWS_PER_PAGE;
-    uint32_t byte_offset = row_offset % ROW_SIZE;
+    uint32_t byte_offset = row_offset * ROW_SIZE;
+
     return page + byte_offset;
 }
 
