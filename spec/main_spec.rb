@@ -1,7 +1,8 @@
 describe 'database' do
     def run_script(commands)
         raw_output = nil
-        IO.popen("./db", "r+") do |pipe|
+        $stdout.write 'Dir.pwd'
+        IO.popen("./sqlite", "r+") do |pipe|
             commands.each do |command|
                 pipe.puts command
             end

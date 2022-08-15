@@ -6,6 +6,14 @@ list(REMOVE_ITEM sources "${PROJECT_SOURCE_DIR}/src/main.c")
 file(GLOB tests "${PROJECT_SOURCE_DIR}/test/*.cpp")
 list(REMOVE_ITEM tests "${PROJECT_SOURCE_DIR}/test/main.cpp")
 
+add_test(NAME integration_test
+    message(STATUS "Current dir : ${CMAKE_CURRENT_LIST_DIR}")
+    execute_process(
+    COMMAND bundle exec rspec ${CMAKE_CURRENT_LIST_DIR}/../..
+    -d ${CMAKE_BINARY_DIR}/data
+    ERROR_VARIABLE DOWNLOAD_ERROR)
+    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
+
 foreach(file ${tests})
     set(name)
     get_filename_component(name ${file} NAME_WE)
