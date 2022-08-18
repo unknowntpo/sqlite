@@ -15,8 +15,13 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build .
 add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
         ${CMAKE_BINARY_DIR}/googletest-build)
 
+# Copy everything in spec to ${CMAKE_BINARY_DIR}
+file(COPY ${PROJECT_SOURCE_DIR}/spec
+        DESTINATION ${CMAKE_BINARY_DIR})
+
 enable_testing()
 add_subdirectory(test)
+add_subdirectory(spec)
 
 # #
 # ## Source definitions ###
