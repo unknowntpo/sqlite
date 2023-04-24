@@ -27,8 +27,4 @@ gtest_db = executable('gtest_db', [test_sources, 'db/gtest_db.cpp'],
     include_directories: [includes_dir]
 )
 
-test('Gtest Test Valid', gtest_db)
-
-
-
-
+test('Test DB', gtest_db)

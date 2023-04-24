@@ -2,7 +2,7 @@
  * Ref: https://shengyu7697.github.io/googletest/
  * google test
  */
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 extern "C" {
 #include "db/db.h"
@@ -26,11 +26,28 @@ int main(int argc, char **argv)
 
 TEST(testInputBuffer, read_input)
 {
-    FILE *f = fopen("./testdata/input_buffer.txt", "r");
+    std::string str = "insert 1 user1 person1@example.com";
+    // Create a memory buffer with the contents of the string
+    const char *data = str.data();
+    size_t size = str.size();
+
+    // Open a stream using the memory buffer
+    FILE *f = fmemopen(const_cast<char *>(data), size, "r");
+
+    //    FILE *f = fopen("../testdata/input_buffer.txt", "r");
+    char cwd[1024];
+    EXPECT_TRUE(getcwd(cwd, sizeof(cwd)) != NULL);
+    GTEST_LOG_(INFO) << "cwd = " << cwd << std::endl;
+
+    EXPECT_FALSE(f == NULL);
     InputBuffer *b = new_input_buffer();
     read_input(b, f);
-    std::string str = "insert 1 user1 person1@example.com";
     const char *want = str.c_str();
+
+    GTEST_LOG_(INFO) << "want: " << want << std::endl;
+
+    GTEST_LOG_(INFO) << "buf: " << b->buffer << std::endl;
+
     EXPECT_EQ(b->input_length, strlen(want));
     EXPECT_STREQ(b->buffer, want);
 }
