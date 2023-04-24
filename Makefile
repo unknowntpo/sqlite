@@ -1,63 +1,37 @@
-CC = gcc
-GXX = g++
-CFLAGS = -g -Wall
-CPPFLAGS = -g -std=c++11
-# OBJS = $(wildcard ./src/*.o) 
-# OBJS = db.o
-SRC = ./src
-OBJ = ./obj
+# check installation of githooks and display help message when typing make
+all: help
 
-TESTBIN = ./bin/test
-BIN = ./bin/sqlite
-# wildcard should use *
-# https://makefiletutorial.com/#-wildcard-1
-SRCS = $(wildcard $(SRC)/*.c)
+# ==================================================================================== #
+# HELPERS
+# ==================================================================================== #
 
-INC_DIR = ./include
-INC_FLAGS = $(addprefix -I,$(INC_DIR))
+## help: print this help message
+.PHONY: help
+help:
+	@echo 'Usage:'
+	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 
-LIB_DIR = ./lib
+BUILDDIR ?= build
 
-TEST = ./test
-TESTS = $(wildcard $(TEST)/*.c)
-TESTOBJS = $(patsubst $(TEST)/%.c, $(OBJ)/%.o, $(TESTS))
-# >>?
-OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+## setup: create a build directory for meson.
+setup:
+	meson setup $(BUILDDIR)
 
-ifeq ("$(VERBOSE)", "1")
-	Q :=
-	VECHO = @true
-else
-	Q := @
-	VECHO = @printf
-endif
+## setup/reconfigure: reconfigure a build directory for meson.
+setup/reconfigure:
+	meson setup --reconfigure $(BUILDDIR)
 
-.PHONY: all
-all: $(BIN)
 
-$(BIN): $(OBJS)
-	$(VECHO) '  LD\t $^\n'
-	$(Q)$(CC) -o $@ $^
+## build: build binaries.
+build:
+	meson compile -C $(BUILDDIR)
 
-test/it:
-	@bundle exec rspec
+## test: run all tests, set VERBOSE=1 if you need more detail info.
+test:
+	meson test -C $(BUILDDIR) $(if $(VERBOSE), -v)
 
-.PHONY: test/unit
-test/unit: $(filter-out $(OBJ)/main.o, $(OBJS)) $(TESTOBJS) $(LIB_DIR)/libgtest.a $(LIB_DIR)/libgtest_main.a
-	$(VECHO) '  LD\t $^\n'
-	$(Q)$(GXX) $(CPPFLAGS)  -o $(TESTBIN) $^
-	@echo ''
-	@echo 'Running automated tests...'
-	@echo ''
-	@$(TESTBIN)
-
-$(OBJ)/%.o: $(TEST)/%.cpp
-	$(VECHO) '  CC\t $^\n'
-	$(Q)$(GXX) $(CPPFLAGS)  -o $@ $(INC_FLAGS) -c $^
-
-$(OBJ)/%.o: $(SRC)/%.c
-	$(VECHO) '  CC\t $^\n'
-	$(Q)$(CC) -o $@ $(CFLAGS) $(INC_FLAGS) -c $^
-
+## clean: clean all artefacts.
 clean:
-	@-rm $(BIN) $(OBJS) $(TESTOBJS)
+	-rm -rf build
+	
+.PHONY: help setup build test clean

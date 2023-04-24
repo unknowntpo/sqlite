@@ -1,0 +1,238 @@
+meson test -C build
+[0/1] Regenerating build files.
+Cleaning... 0 files.
+The Meson build system
+Version: 1.0.0
+Source dir: /Users/unknowntpo/repo/unknowntpo/playground-2022/c/meson_tmpl
+Build dir: /Users/unknowntpo/repo/unknowntpo/playground-2022/c/meson_tmpl/build
+Build type: native build
+Project name: cdemo
+Project version: undefined
+C compiler for the host machine: cc (clang 14.0.0 "Apple clang version 14.0.0 (clang-1400.0.29.202)")
+C linker for the host machine: cc ld64 820.1
+C++ compiler for the host machine: c++ (clang 14.0.0 "Apple clang version 14.0.0 (clang-1400.0.29.202)")
+C++ linker for the host machine: c++ ld64 820.1
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+Dependency glib-2.0 found: YES 2.74.4 (cached)
+
+Executing subproject gtest 
+
+gtest| Project name: gtest
+gtest| Project version: 1.12.1
+gtest| C++ compiler for the host machine: c++ (clang 14.0.0 "Apple clang version 14.0.0 (clang-1400.0.29.202)")
+gtest| C++ linker for the host machine: c++ ld64 820.1
+gtest| Dependency threads found: YES unknown (cached)
+gtest| Dependency threads found: YES unknown (cached)
+gtest| Dependency threads found: YES unknown (cached)
+gtest| Dependency threads found: YES unknown (cached)
+gtest| Build targets in project: 0
+gtest| Subproject gtest finished.
+
+Dependency threads found: YES unknown (cached)
+Build targets in project: 3
+
+cdemo undefined
+
+  Subprojects
+    gtest: YES
+
+Found ninja-1.11.1 at /opt/homebrew/bin/ninja
+ninja: no work to do.
+ninja: Entering directory `/Users/unknowntpo/repo/unknowntpo/playground-2022/c/meson_tmpl/build'
+[1/3] Compiling C++ object test/gtest_module.p/add_gtest_add.cpp.o
+FAILED: test/gtest_module.p/add_gtest_add.cpp.o 
+c++ -Itest/gtest_module.p -Itest -I../test -I../include -I../include/add -I/opt/homebrew/Cellar/glib/2.74.4/include/glib-2.0 -I/opt/homebrew/Cellar/glib/2.74.4/lib/glib-2.0/include -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/Cellar/pcre2/10.42/include -fcolor-diagnostics -Wall -Winvalid-pch -O0 -g -isystem../subprojects/googletest-release-1.12.1/googletest -isystemsubprojects/googletest-release-1.12.1/googletest -isystem../subprojects/googletest-release-1.12.1/googletest/include -Dcpp_std=c++11 -MD -MQ test/gtest_module.p/add_gtest_add.cpp.o -MF test/gtest_module.p/add_gtest_add.cpp.o.d -o test/gtest_module.p/add_gtest_add.cpp.o -c ../test/add/gtest_add.cpp
+In file included from ../test/add/gtest_add.cpp:5:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:59:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-assertion-result.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-message.h:55:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:844:12: error: no member named 'make_tuple' in namespace 'std'
+using std::make_tuple;
+      ~~~~~^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:845:12: error: no member named 'tuple' in namespace 'std'
+using std::tuple;
+      ~~~~~^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:1231:20: error: expected expression
+    cv_.wait(lock, [this]() { return notified_; });
+                   ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2102:2: error: expected expression
+[[noreturn]] inline void Abort() { abort(); }
+ ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2102:14: error: expected unqualified-id
+[[noreturn]] inline void Abort() { abort(); }
+             ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2129:1: error: unknown type name 'constexpr'
+constexpr BiggestInt kMaxBiggestInt = (std::numeric_limits<BiggestInt>::max)();
+^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2129:21: error: expected ';' after top level declarator
+constexpr BiggestInt kMaxBiggestInt = (std::numeric_limits<BiggestInt>::max)();
+                    ^
+In file included from ../test/add/gtest_add.cpp:5:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:71:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-type-util.h:164:46: error: a space is required between consecutive right angle brackets (use '> >')
+struct is_proxy_type_list<ProxyTypeList<Ts...>> : std::true_type {};
+                                             ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-type-util.h:173:58: error: a space is required between consecutive right angle brackets (use '> >')
+                                          ProxyTypeList<T>>::type;
+                                                         ^
+In file included from ../test/add/gtest_add.cpp:5:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:609:7: error: no member named 'Abort' in namespace 'testing::internal::posix'; did you mean 'abort'?
+      posix::Abort();
+      ^~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h:131:7: note: 'abort' declared here
+void     abort(void) __cold __dead2;
+         ^
+In file included from ../test/add/gtest_add.cpp:5:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:669:31: error: found '<::' after a template name which forms the digraph '<:' (aka '[') and a ':', did you mean '< ::'?
+                 ::std::vector<::std::string>* dest);
+                              ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:790:7: error: no member named 'Abort' in namespace 'testing::internal::posix'; did you mean 'abort'?
+      posix::Abort();
+      ^~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h:131:7: note: 'abort' declared here
+void     abort(void) __cold __dead2;
+         ^
+In file included from ../test/add/gtest_add.cpp:5:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:897:10: error: 'auto' not allowed in function return type
+  static auto CheckDebugString(C*) -> typename std::is_same<
+         ^~~~
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:897:35: error: expected ';' at end of declaration list
+  static auto CheckDebugString(C*) -> typename std::is_same<
+                                  ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:903:10: error: 'auto' not allowed in function return type
+  static auto CheckShortDebugString(C*) -> typename std::is_same<
+         ^~~~
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:903:40: error: expected ';' at end of declaration list
+  static auto CheckShortDebugString(C*) -> typename std::is_same<
+                                       ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:912:10: error: unknown type name 'constexpr'
+  static constexpr bool value =
+         ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:917:1: error: unknown type name 'constexpr'
+constexpr bool HasDebugStringAndShortDebugString<T>::value;
+^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:1199:43: error: a space is required between consecutive right angle brackets (use '> >')
+struct ElemFromListImpl<IndexSequence<I...>> {
+                                          ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+[2/3] Compiling C++ object test/gtest_module.p/.._subprojects_googletest-release-1.12.1_googletest_src_gtest-all.cc.o
+FAILED: test/gtest_module.p/.._subprojects_googletest-release-1.12.1_googletest_src_gtest-all.cc.o 
+c++ -Itest/gtest_module.p -Itest -I../test -I../include -I../include/add -I/opt/homebrew/Cellar/glib/2.74.4/include/glib-2.0 -I/opt/homebrew/Cellar/glib/2.74.4/lib/glib-2.0/include -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/Cellar/pcre2/10.42/include -fcolor-diagnostics -Wall -Winvalid-pch -O0 -g -isystem../subprojects/googletest-release-1.12.1/googletest -isystemsubprojects/googletest-release-1.12.1/googletest -isystem../subprojects/googletest-release-1.12.1/googletest/include -Dcpp_std=c++11 -MD -MQ test/gtest_module.p/.._subprojects_googletest-release-1.12.1_googletest_src_gtest-all.cc.o -MF test/gtest_module.p/.._subprojects_googletest-release-1.12.1_googletest_src_gtest-all.cc.o.d -o test/gtest_module.p/.._subprojects_googletest-release-1.12.1_googletest_src_gtest-all.cc.o -c ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc
+In file included from ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc:38:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:59:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-assertion-result.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-message.h:55:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:844:12: error: no member named 'make_tuple' in namespace 'std'
+using std::make_tuple;
+      ~~~~~^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:845:12: error: no member named 'tuple' in namespace 'std'
+using std::tuple;
+      ~~~~~^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:1231:20: error: expected expression
+    cv_.wait(lock, [this]() { return notified_; });
+                   ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2102:2: error: expected expression
+[[noreturn]] inline void Abort() { abort(); }
+ ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2102:14: error: expected unqualified-id
+[[noreturn]] inline void Abort() { abort(); }
+             ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2129:1: error: unknown type name 'constexpr'
+constexpr BiggestInt kMaxBiggestInt = (std::numeric_limits<BiggestInt>::max)();
+^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-port.h:2129:21: error: expected ';' after top level declarator
+constexpr BiggestInt kMaxBiggestInt = (std::numeric_limits<BiggestInt>::max)();
+                    ^
+In file included from ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc:38:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:71:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-type-util.h:164:46: error: a space is required between consecutive right angle brackets (use '> >')
+struct is_proxy_type_list<ProxyTypeList<Ts...>> : std::true_type {};
+                                             ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-type-util.h:173:58: error: a space is required between consecutive right angle brackets (use '> >')
+                                          ProxyTypeList<T>>::type;
+                                                         ^
+In file included from ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc:38:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:609:7: error: no member named 'Abort' in namespace 'testing::internal::posix'; did you mean 'abort'?
+      posix::Abort();
+      ^~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h:131:7: note: 'abort' declared here
+void     abort(void) __cold __dead2;
+         ^
+In file included from ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc:38:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:669:31: error: found '<::' after a template name which forms the digraph '<:' (aka '[') and a ':', did you mean '< ::'?
+                 ::std::vector<::std::string>* dest);
+                              ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:790:7: error: no member named 'Abort' in namespace 'testing::internal::posix'; did you mean 'abort'?
+      posix::Abort();
+      ^~~~~~~
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h:131:7: note: 'abort' declared here
+void     abort(void) __cold __dead2;
+         ^
+In file included from ../subprojects/googletest-release-1.12.1/googletest/src/gtest-all.cc:38:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest.h:60:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-death-test.h:43:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-death-test-internal.h:46:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-matchers.h:48:
+In file included from ../subprojects/googletest-release-1.12.1/googletest/include/gtest/gtest-printers.h:114:
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:897:10: error: 'auto' not allowed in function return type
+  static auto CheckDebugString(C*) -> typename std::is_same<
+         ^~~~
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:897:35: error: expected ';' at end of declaration list
+  static auto CheckDebugString(C*) -> typename std::is_same<
+                                  ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:903:10: error: 'auto' not allowed in function return type
+  static auto CheckShortDebugString(C*) -> typename std::is_same<
+         ^~~~
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:903:40: error: expected ';' at end of declaration list
+  static auto CheckShortDebugString(C*) -> typename std::is_same<
+                                       ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:912:10: error: unknown type name 'constexpr'
+  static constexpr bool value =
+         ^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:917:1: error: unknown type name 'constexpr'
+constexpr bool HasDebugStringAndShortDebugString<T>::value;
+^
+../subprojects/googletest-release-1.12.1/googletest/include/gtest/internal/gtest-internal.h:1199:43: error: a space is required between consecutive right angle brackets (use '> >')
+struct ElemFromListImpl<IndexSequence<I...>> {
+                                          ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+ninja: build stopped: subcommand failed.
+Could not rebuild /Users/unknowntpo/repo/unknowntpo/playground-2022/c/meson_tmpl/build
